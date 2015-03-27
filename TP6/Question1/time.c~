@@ -1,0 +1,15 @@
+#include "time.h"
+#include "scheduler.h"
+#include "interrupt.h"
+#include "sleep.h"
+#include <stdio.h>
+
+// appelé toutes les 10ms
+void clock_handler(int sig)
+{
+	preempt -= 1;
+	if (preempt <= 0)
+	{
+		reschedule();
+	}
+}
